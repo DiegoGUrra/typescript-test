@@ -1,7 +1,7 @@
 import L from 'leaflet';
 
 
-interface Mappable {
+export interface Mappable {
   location: {
     lat: number;
     lng: number;
@@ -17,14 +17,12 @@ export class CustomMap {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.customMap);
-    // L.marker([-33.4489, -70.6693]).addTo(this.customMap)
-    //   .bindPopup('Santiagooo!')
-    //   .openPopup();
   }
 
   addMarker(mappable: Mappable): void {
+    console.log(mappable);
     L.marker([mappable.location.lat, mappable.location.lng]).addTo(this.customMap)
       .bindPopup(mappable.markerContent())
-      .openPopup();
+      .openPopup()
   }
 };
